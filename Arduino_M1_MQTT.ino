@@ -53,30 +53,36 @@ void setup() {
   // Apply changes
   Serial.print("Applying changes and saving configuration: ");
   MODEM.sendf("AT+CFUN=15");
-  MODEM.waitForResponse(5000);
-  delay(5000);
-
-  while (MODEM.waitForResponse(1000) != 1) {
-    delay(1000);
+  do {
+    delay(100);
+    Serial.print(".");
     MODEM.noop();
-  }
+  } while (MODEM.waitForResponse(1000) != 1);
   Serial.println("done.");
 
-  // Set modem to "full functionality"
+  // SARA R4 AT Command Manual Section 5.3: +CFUN response time UP TO 3 MIN
   Serial.println("Modem ready, turn radio on in order to configure it...");
   MODEM.sendf("AT+CFUN=1");
-  MODEM.waitForResponse(2000, &response);
+  do {
+    delay(100);
+    Serial.print(".");
+    MODEM.noop();
+  } while (MODEM.waitForResponse(1000) != 1);
   Serial.println("done.");
 
   // Wait for a good signal strength (between 0 and 98)
   Serial.println("Check attachment until CSQ RSSI indicator is less than 99...");
   int status = 99;
-  while (status > 98 && status > 0) {
-    MODEM.sendf("AT+CSQ");
+  while (status > 31) {
+    MODEM.send("AT+CSQ");
     MODEM.waitForResponse(2000, &response);
 
-    String sub = response.substring(6,8);
-    status = sub.toInt(); // Will return 0 if no valid number is found
+    // Parse response: +CSQ: <signal_power>,<qual>
+    int delimeterIndex = response.indexOf(",");
+    if (delimeterIndex != -1) {
+      String sub = response.substring(6, delimeterIndex);
+      status = sub.toInt(); // Will return 0 if no valid number is found
+    }
     delay(1000);
   }
   Serial.println("done.");
