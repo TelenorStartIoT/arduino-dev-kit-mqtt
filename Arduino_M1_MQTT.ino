@@ -14,7 +14,7 @@ GSMSecurity  profile;
 const char client_id[]      = "00001770";                                       // Change this to your Thing ID
 const char topic[]          = "$aws/things/00001770/shadow/update";             // Change this to your Thing ID
 const char downlink_topic[] = "$aws/things/00001770/shadow/update";             // Change this to your Thing ID
-const char aws_host[]       = "a3k7odshaiipe8.iot.eu-west-1.amazonaws.com";
+const char aws_host[]       = "a15nxxwvsld4o-ats.iot.eu-west-1.amazonaws.com";
 uint16_t   port             = 8883;                                             // Port 8883 is the default for MQTT
 
 PubSubClient mqttClient(aws_host, port, client);
