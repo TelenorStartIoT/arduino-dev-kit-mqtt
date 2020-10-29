@@ -183,7 +183,7 @@ void publishMessage() {
   temperatureString.toCharArray(temperatureArray, temperatureString.length());
   humidityString.toCharArray(humidityArray, humidityString.length());
 
-  sprintf(message, "{\"state\":{\"reported\": {\"temperature\":\"%s\", \"humidity\": \"%s\", \"latlng\": \"69.417383, 17.163101\"}}}", temperatureArray, humidityArray);
+  sprintf(message, "{\"state\":{\"reported\": {\"temperature\":%s, \"humidity\":%s, \"latlng\": \"69.417383, 17.163101\"}}}", temperatureArray, humidityArray);
 
   Serial.print("Publish message: <");
   Serial.print(message);
