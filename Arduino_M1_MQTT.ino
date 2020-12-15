@@ -2,7 +2,14 @@
 #include <Modem.h>
 #include "PubSubClient.h"
 #include "GSMSecurity.h"
-#include "MICcertificatesYOUR_THING_ID.h"
+
+/**
+ * These are deliberately commented out,
+ * chose one cert/key format DER or PEM and uncomment
+ */
+
+// #include "MICcertificates_YOUR_THING_ID.der.h"
+// #include "MICcertificates_YOUR_THING_ID.pem.h"
 
 const char PINNUMBER[]      = "1111";                                           // PIN Number
 const char APN[]            = "telenor.iot";                                    // APN

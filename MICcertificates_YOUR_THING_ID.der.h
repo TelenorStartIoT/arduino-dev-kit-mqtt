@@ -1,3 +1,6 @@
+#ifndef MIC_CERT_DER_H
+#define MIC_CERT_DER_H
+
 struct MICcertificates {
   const char* name;
   const uint8_t* data;
@@ -310,3 +313,5 @@ static const MICcertificates MIC_CERTS[] = {
     1193
   },
 };
+
+#endif
