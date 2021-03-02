@@ -96,7 +96,7 @@ void setup() {
   // Set APN and check if network is ready
   boolean connected = false;
   while (!connected) {
-    if ((nbAccess.begin(PINNUMBER, APN, true) == NB_READY) && (gprs.attachGPRS() == GPRS_READY)) {
+    if ((nbAccess.begin(PINNUMBER, APN, false) == NB_READY) && (gprs.attachGPRS() == GPRS_READY)) {
       connected = true;
     } else {
       Serial.println("Not connected");
