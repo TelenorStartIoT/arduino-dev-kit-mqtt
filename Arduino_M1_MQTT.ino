@@ -22,12 +22,6 @@ PubSubClient mqttClient(aws_host, port, client);
 void setup() {
   String response;
 
-  // Reset the ublox module
-  pinMode(SARA_RESETN, OUTPUT);
-  digitalWrite(SARA_RESETN, HIGH);
-  delay(100);
-  digitalWrite(SARA_RESETN, LOW);
-
   // Open serial communications and wait for port to open
   Serial.begin(115200);
   while (!Serial);
